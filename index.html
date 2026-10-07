@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classic Academic Resume Builder</title>
+    <meta name="description" content="Create a classic, ATS-friendly LaTeX-style resume.">
+    <!-- Builder UI Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Form Section (Modern UI) -->
+        <section class="form-section">
+            <div class="form-header">
+                <h1>Resume Builder</h1>
+                <div class="progress-container-wrapper" style="margin-bottom: 2rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <span style="font-size: 0.9rem; font-weight: 600; color: #cbd5e1;">Profile Completeness</span>
+                        <span id="progress-text" style="font-size: 0.9rem; font-weight: 700; color: #60a5fa;">0%</span>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
+                </div>
+            </div>
+
+            <form id="resume-form">
+                <!-- Contact Info -->
+                <div class="form-group-section">
+                    <h2><i class="fa-solid fa-address-card"></i> Contact Information</h2>
+                    <div class="input-group">
+                        <label>Full Name</label>
+                        <input type="text" id="name" placeholder="Aashna Mittal" required>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>Phone</label>
+                            <input type="tel" id="phone" placeholder="+91 8427754033" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Email</label>
+                            <input type="email" id="email" placeholder="aashnamittal1108@gmail.com" required>
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>LinkedIn (URL without https://)</label>
+                            <input type="text" id="linkedin" placeholder="linkedin.com/in/aashna-mittal">
+                        </div>
+                        <div class="input-group">
+                            <label>GitHub (URL without https://)</label>
+                            <input type="text" id="github" placeholder="github.com/aashnamittal">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <div class="form-group-section">
+                    <h2><i class="fa-solid fa-graduation-cap"></i> Education</h2>
+                    <div id="education-container"></div>
+                    <button type="button" class="btn-add" id="add-education">
+                        <i class="fa-solid fa-plus"></i> Add Education
+                    </button>
+                </div>
+
+                <!-- Technical Skills -->
+                <div class="form-group-section">
+                    <h2><i class="fa-solid fa-code"></i> Technical Skills</h2>
+                    <div class="input-group">
+                        <label>Languages</label>
+                        <input type="text" id="skill-languages" placeholder="C/C++, Python, SQL (MySQL), HTML, CSS, etc...">
+                    </div>
+                    <div class="input-group">
+                        <label>Libraries and Frameworks</label>
+                        <input type="text" id="skill-frameworks" placeholder="Pandas, NumPy, Matplotlib, React, etc...">
+                    </div>
+                    <div class="input-group">
+                        <label>Developer Tools</label>
+                        <input type="text" id="skill-tools" placeholder="Git, VS Code, Jupyter Notebook, Docker, etc...">
+                    </div>
+                    <div class="input-group">
+                        <label>Coursework</label>
+                        <input type="text" id="skill-coursework" placeholder="DSA, OOPs, Signals and Systems, etc...">
+                    </div>
+                </div>
+
+                <!-- Projects -->
+                <div class="form-group-section">
+                    <h2><i class="fa-solid fa-folder-open"></i> Projects</h2>
+                    <div id="projects-container"></div>
+                    <button type="button" class="btn-add" id="add-project">
+                        <i class="fa-solid fa-plus"></i> Add Project
+                    </button>
+                </div>
+
+                <!-- Leadership Experience -->
+                <div class="form-group-section">
+                    <h2><i class="fa-solid fa-users"></i> Leadership Experience</h2>
+                    <div id="leadership-container"></div>
+                    <button type="button" class="btn-add" id="add-leadership">
+                        <i class="fa-solid fa-plus"></i> Add Experience
+                    </button>
+                </div>
+
+                <!-- Achievements & Certifications -->
+                <div class="form-group-section">
+                    <h2><i class="fa-solid fa-trophy"></i> Achievements & Certifications</h2>
+                    <div id="achievements-container"></div>
+                    <button type="button" class="btn-add" id="add-achievement">
+                        <i class="fa-solid fa-plus"></i> Add Achievement
+                    </button>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-clear" id="clear-form">Clear Form</button>
+                    <button type="button" class="btn-download" id="download-pdf">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Preview Section (Classic Document Style) -->
+        <section class="preview-section">
+            <div class="resume-preview classic-template" id="resume-preview">
+                <!-- Header -->
+                <div class="resume-header-classic">
+                    <h1 id="preview-name">Your Name</h1>
+                    <div class="contact-line" id="preview-contact">
+                        <!-- Contact info populated by JS to handle separators properly -->
+                    </div>
+                </div>
+                
+                <div class="resume-body-classic">
+                    <!-- EDUCATION -->
+                    <div class="classic-section" id="section-education">
+                        <h2 class="section-title">EDUCATION</h2>
+                        <div id="preview-education-list">
+                            <p class="placeholder-text">Add education details.</p>
+                        </div>
+                    </div>
+
+                    <!-- TECHNICAL SKILLS -->
+                    <div class="classic-section" id="section-skills">
+                        <h2 class="section-title">TECHNICAL SKILLS</h2>
+                        <div id="preview-skills-list">
+                            <div class="skill-row" id="row-languages" style="display:none;">
+                                <span class="skill-label">Languages:</span> <span id="preview-languages"></span>
+                            </div>
+                            <div class="skill-row" id="row-frameworks" style="display:none;">
+                                <span class="skill-label">Libraries and Frameworks:</span> <span id="preview-frameworks"></span>
+                            </div>
+                            <div class="skill-row" id="row-tools" style="display:none;">
+                                <span class="skill-label">Developer Tools:</span> <span id="preview-tools"></span>
+                            </div>
+                            <div class="skill-row" id="row-coursework" style="display:none;">
+                                <span class="skill-label">Coursework:</span> <span id="preview-coursework"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROJECTS -->
+                    <div class="classic-section" id="section-projects">
+                        <h2 class="section-title">PROJECTS</h2>
+                        <div id="preview-projects-list">
+                            <p class="placeholder-text">Add projects.</p>
+                        </div>
+                    </div>
+
+                    <!-- LEADERSHIP EXPERIENCE -->
+                    <div class="classic-section" id="section-leadership">
+                        <h2 class="section-title">LEADERSHIP EXPERIENCE</h2>
+                        <div id="preview-leadership-list">
+                            <p class="placeholder-text">Add leadership experience.</p>
+                        </div>
+                    </div>
+
+                    <!-- ACHIEVEMENTS -->
+                    <div class="classic-section" id="section-achievements">
+                        <h2 class="section-title">ACHIEVEMENTS AND CERTIFICATIONS</h2>
+                        <div id="preview-achievements-list">
+                            <p class="placeholder-text">Add achievements.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
