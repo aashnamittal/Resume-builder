@@ -27,6 +27,3 @@ A sleek, interactive web application that allows users to instantly generate a p
 4. Review the live 3D-floating preview on the right.
 5. Click **"Download PDF"** to instantly generate your professional resume!
 
-## 💡 Deployment
-
-This project is completely client-side and can be hosted for free on **GitHub Pages**, Vercel, or Netlify with zero configuration required.
